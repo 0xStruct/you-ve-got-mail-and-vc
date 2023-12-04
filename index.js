@@ -3,17 +3,18 @@ import path from "path";
 
 // verifiers
 import vTrinsicEmailRouter from "./verifiers/trinsic-ebook.js";
-import vDevpostSubmissionRouter from "./verifiers/devpost-submission.js";
+import vEmailCorrespondenceRouter from "./verifiers/email-correspondence.js";
 import vLumaParticipationRouter from "./verifiers/luma-participation.js";
+import vDevpostSubmissionRouter from "./verifiers/devpost-submission.js";
 
 const app = express();
 app.use(express.json());
 //app.use(cors());
 
 app.use("/verifiers/trinsic-ebook", vTrinsicEmailRouter);
-app.use("/verifiers/devpost-submission", vDevpostSubmissionRouter);
+app.use("/verifiers/email-correspondence", vEmailCorrespondenceRouter);
 app.use("/verifiers/luma-participation", vLumaParticipationRouter);
-
+app.use("/verifiers/devpost-submission", vDevpostSubmissionRouter);
 
 // Serve static files from the 'public' folder
 app.use(express.static(process.cwd()));

@@ -60,12 +60,12 @@ vEmailCorrespondenceRouter.post("/", async (req, res) => {
 
         console.log("Email metadata:", from, to, messageId, subject, date);
 
-        // check FROM
-        if (from !== "noreply@luma-mail.com") {
-            verifyFailed = true;
-            verifyFailedMessage = "Invalid FROM field";
-            break;
-        }
+        // check FROM - no need to check
+        // if (from !== "noreply@luma-mail.com") {
+        //     verifyFailed = true;
+        //     verifyFailedMessage = "Invalid FROM field";
+        //     break;
+        // }
 
         // check subject - no need to check
         // if (!subject.startsWith("Thanks for joining ")) {
