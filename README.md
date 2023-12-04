@@ -9,11 +9,13 @@ With tons of data sitting in inboxes, this app verifies e-mails into VCs to proo
 
 This app showcases how email can be used as a trusted and credible source to generate verified credentials (without involvement of issuers). This is possible because integrity of email is ensured via DKIM (DomainKeys Identified Mail).
 
+![How does DKIM works](https://raw.githubusercontent.com/0xStruct/moolah/main/images/dkim.png)
+
 A user can present his/her email in _raw format_ or _.eml_ file to proof something. Verifier/attestor can then check for authenticity of email with reference to DKIM signature, verifies that authenticated email has certain information via regexes. If everything checks out, the verifier/attestor will issue the VC to user through _Trinsic SDK_.
 
-***Permissionless*** there is no need for 3rd party, APIs, etc.... this is the beauty of using email as VCs. Users can use the emails in their inboxes which they have received from relevant sources. And then get VCs issued through Trinsic.
+***Permissionless*** ... there is no need for 3rd party, APIs, etc.... this is the beauty of using email as VCs. Users can use the emails in their inboxes which they have received from relevant sources. And then get VCs issued through Trinsic.
 
-***Proof anything*** literally anything using emails in the inboxes. Emails received in the past as well as in the future.
+***Proof anything*** ... literally anything using emails in the inboxes. Emails received in the past as well as in the future.
 
 ## Use-cases
 
@@ -58,8 +60,9 @@ node index.js
 ```
 
 Then head over to http://localhost:3000
+
 Choose a proof verifer. 
-You can load the sample email by clicking `Load Sample Email` on the right bottom of the form.
+You can insert a sample email by clicking `Insert Sample Email` on the right bottom of the form.
 Click `Verify` button which makes `POST` request to verifier API and issue a verified credential via _Trinsic SDK_
 
 ## Code structure
