@@ -1,0 +1,405 @@
+Delivered-To: 0xstruct@gmail.com
+Received: by 2002:a59:9ec6:0:b0:431:e673:1299 with SMTP id t6csp2992930vqx;
+        Sun, 3 Dec 2023 13:05:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH3yl/uWZ99k6kWE/od5a3Ax6ExKjZENuCHEoQnRcuD4WtXUvXdRVTMd5X0AoiEqM6eW6f2
+X-Received: by 2002:a05:6808:ecd:b0:3b8:b063:a1c5 with SMTP id q13-20020a0568080ecd00b003b8b063a1c5mr5090872oiv.79.1701637552919;
+        Sun, 03 Dec 2023 13:05:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701637552; cv=none;
+        d=google.com; s=arc-20160816;
+        b=T8d+KwR0l1NRlOAartv5rqrT7Wh/W/gaKgQV2Ube815nZEgv28qCuYib71b7f4hk/+
+         vE5Hr30BbBiLypRODcHOqxFBYSquiuvSTGNc9jtpwDP4ONP0A+4NMlXZMrDYUPrkRT+m
+         XV4KQgoRRtYFu7F6Ea8jC2IMUfxLlMvaZdOPPKvO4AqF1N7zYlEeQ81iinjT+SnL8vBz
+         RJCyt9DDfhEPAUYoUUqZW/U2GsCA4MbN/h9hxyZZC8mft/TCEJ1tFXVpaeS/EBRK5iAt
+         Jj4mGgHMB8Jy1ZNcx3EIAUgn5WI5BhqJpYICE71PcXJPS2WK4ZveWacqgFC1lWOaJWOy
+         06dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:precedence:mime-version:subject:message-id:to:reply-to
+         :from:date:list-unsubscribe:dkim-signature:dkim-signature;
+        bh=hT/JXy42gCQDgg7W1Hsw5jJivXwIiZKRAzRGEQlhbuU=;
+        fh=W5NVSPh9nHTlT1yHHDdUai2NcWErgJ5IxyIqYfxa4wc=;
+        b=aFrH41E4Kidt+8cijBJsNqJIObOpdTnwAqRicQNyoJv9xPoWrE9DX702sJ6w1yI6pO
+         ZZ8HAKZ8ddgGhiBPWqO2I1TwDo5LxnwJ+O+uAPMeg1N6esL0J5b6aGptQDJOwyqG6svT
+         Svp4J4Ka1N8wcZVXoUAAn0qm4znaTHlLaIlsivADE5ItW2RSuACGmRr1kUbved/ZPmEh
+         I94j72JTnFC7Ppnmdtnj+Xa5A6cYeXGzpB7DLuuLgi7apBvu0UrywS6+3meqLO+6BEwZ
+         slr1TtQz9ln7UghKQjhhCQJouvFZ/xzUHHkzfb+gUXhRkYolFbM12p4hSwyCzGkT86ds
+         qd1w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf01.hubspotstarter.net header.s=hs1 header.b=vRrPp6F+;
+       dkim=pass header.i=@trinsic.id header.s=hs2-21743880 header.b=QL777Fjn;
+       spf=pass (google.com: domain of 1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net designates 158.247.28.99 as permitted sender) smtp.mailfrom="1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=trinsic.id
+Return-Path: <1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net>
+Received: from bid48mt.bf01.hubspotstarter.net (bid48mt.bf01.hubspotstarter.net. [158.247.28.99])
+        by mx.google.com with ESMTPS id po6-20020a05620a384600b0077dd0b43cf3si7679472qkn.505.2023.12.03.13.05.52
+        for <0xstruct@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 03 Dec 2023 13:05:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of 1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net designates 158.247.28.99 as permitted sender) client-ip=158.247.28.99;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf01.hubspotstarter.net header.s=hs1 header.b=vRrPp6F+;
+       dkim=pass header.i=@trinsic.id header.s=hs2-21743880 header.b=QL777Fjn;
+       spf=pass (google.com: domain of 1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net designates 158.247.28.99 as permitted sender) smtp.mailfrom="1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=trinsic.id
+Received: by 172.16.191.120 with SMTP id aybpbz3a1zmnbripxkpty64yg42iem0iglv2j14j;
+        Sun, 3 Dec 2023 21:05:52 GMT
+DKIM-Signature: v=1; s=hs1; d=bf01.hubspotstarter.net;
+         i=@bf01.hubspotstarter.net;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=hT/JXy42gCQDgg7W1Hsw5jJivXwIiZKRAzRGEQlhbuU=;
+         b=vRrPp6F+261DtjKBPEzcY66n6Ko7bLfiQXpio4buK5Nbz+WXRIqqXSgLC6aPzE
+         8TCZnnM4jWNxgJoLlVumcs1Nz8WE3rmVhFfH0yYEC4zJXuTg2Rfx4lWE8sy9Cdq
+         Vg+koBSaj+O2mFbc3SG2fREkqwsqLJuECvvEmyAXNvyeAZOPrVO4KU8tu9ePxXk
+         HXLDGvSY4Dm4w/d0/buO1+OPF0+lT9U3CAPQURqF3sS51IbCCjkmR+M/TFuE2kx
+         kqgX2xZkvkb1g6Fi2VZQNm7DCcouF4r4kLSuyiNcUVuy60NgNK35H0LvuWW66wT
+         5KlmhsC7RGkf6nbaMlS0h3yoebgQ==; q=dns/txt; t=1701637552;
+         x=1701900352;
+DKIM-Signature: v=1; s=hs2-21743880; d=trinsic.id; i=@trinsic.id;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=hT/JXy42gCQDgg7W1Hsw5jJivXwIiZKRAzRGEQlhbuU=;
+         b=QL777Fjnt/7Z/aR2/JzKGwsJEwZcIqv3pYAPZwFM6N70XfyDZJPlpveXVmG1+k
+         6zHUroHAdc7lPyz3ddgr8SLVHkHSZsrFICJTc2C3fx8zda/IFl6eOClGU1isLE+
+         Z9fUMf9jacWzvh1yySxhfChAvQZVfrD+RdrLtXJ/sgRta1vWPKoKS0g/wMl0J2P
+         Mzc1mG/2hZBybx6Nz031MKA4vKi+rt8GkNgC1Sd+mQOVjB3yQHiTuyMz141X9Km
+         FLAsicb5dWRT+6+W2MnKf9/v5ixAhZVDpvFo28PtqZBL3JiH828LmguT3P5Uxft
+         XrwiiVfg9LWQ/iKPm7FFxqwIl2sw==; q=dns/txt; t=1701637552;
+         x=1701900352;
+Return-Path: <1axclk9ydjqwwokgs7qn06ktjav9yx85pop30v-0xstruct=gmail.com@bf01.hubspotstarter.net>
+X-HS-Cid: 1axftm1j590eoxw9z3x0kk4bcx569g2r4o9f4f
+List-Unsubscribe: <mailto:1axdi0ovjcjyxahl8bnzcwkr6qhd9y527bfowv-0xstruct=gmail.com@bf01.hubspotstarter.net?subject=unsubscribe>
+Date: Sun, 3 Dec 2023 16:05:52 -0500
+From: Riley Hughes <riley@trinsic.id>
+Reply-To: riley@trinsic.id
+To: 0xstruct@gmail.com
+Message-ID: <1701637552042.304b4233-d4e8-488a-9780-d52d3d45dad9@bf01.hubspotstarter.net>
+Subject: E-book download: The future of identity is reusable
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_Part_2594513_1221296650.1701637552320"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspotstarter.net (see https://hubspotstarter.net/)
+Feedback-ID: aem8byy:aiex7tdx:aib1s:HubSpot
+
+------=_Part_2594513_1221296650.1701637552320
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Thank you for downloading 'The future of identity is reusable'! We look for=
+ward to your feedback and thoughts on future content pieces.
+
+Thanks for downloading our e-book, =E2=80=98The future of identity is reusa=
+ble (https://d2z4Ms04.na1.hubspotlinksstarter.com/Ctc/I8+113/d2z4Ms04/VVLct=
+s1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6crjq23lcq-W95jsWP6lZ3kTW3cvpfC4-mVj5W3Nv=
+F7M5kdkGSW4pPP1H96V1MjW7sy5KV93h5yZW5nB-b-7JfxWTW7KcF_H5VBSQhW3vdXBY96s948W=
+425bbV4TS3pdW794Tdg95RxDyW6z3BBm54WNqVW1ZKPtq3RfD9gW26qf286lFmgRW7Q02CY6hN4=
+5TVxWl0D8j5xnzW3phPvR28v0kjW24_6bW5jmcX5W6XyGV86KkSm8W72DyM-7XqjzbVGsCJg7Z7=
+yzhW11FcSk98SPM2VkYcgN5hJPbWW2ck0bL6yl3SVW5FrXcn2Nmqh1W57ktKk5q16WxW3W9N_C2=
+llM-vW65rn6P6RhpLqW1c_5c44rd0WRW77rFXK69N91PW8jhkTH3SXB3wW2ySTKk7JC43KdR4k5=
+T04 ) =E2=80=99! If you have any feedback after reading, please respond to =
+this email, or connect with me on LinkedIn (https://d2z4Ms04.na1.hubspotlin=
+ksstarter.com/Ctc/I8+113/d2z4Ms04/VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6c=
+rjp83lcq-W7lCdLW6lZ3mjV6sdXl80mvcpW47cnbD4HTC7_W6_hRLd61t8c-V38yK-1S-x3cW5l=
+BZny6sWDFYW4b27zY6QD-zPV5Qyhw83Xxl3W70FZbn1HWNxdW8plxJg8Srmz6W5Z78bR2CCsr9W=
+2vxnWG84PDVlW2c7gZQ1rbR_0W87LfGF6GYd1KW8H4Prl8GMS_CW571QTy680H99W6H720Q3r__=
+SJMqYKSVnlw4KW2XnQf47w6GgmW7kmSGY509VkqW58ky7r70h-ctW8H8Zf15Kvmx4W4hbTn07tl=
+VVKW3mjrl22fhhjSW4gp-Wx2YNgC3f5JR3zW04 )
+
+For more insights about the future of identity, consider subscribing to our=
+ podcast (https://d2z4Ms04.na1.hubspotlinksstarter.com/Ctc/I8+113/d2z4Ms04/=
+VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6crjnT3lcq-W6N1vHY6lZ3lDW1PQnPH1X9lB=
+_W8wZxKW7VRDJBW9bGG3L5L_ZlFW887h867-fNfcW2kVNZQ5MbtY5W35VtkD5v5rcjW6TRx9H55=
+WYL_W9fz9gk4d57CKW5xmMmT8pRPrBN4dTDrdgsT60W3gYhBZ2hCL5HVqHB6p1W08KTW2QzfHx7=
+YsSMFW2xMJk81BPs5QW3zPG-S3Yp1G2W3jZcb15ssjpmW3Mp6R44Mj727W6jd_0g4ZBgR-W2KZq=
+Pr7qpr7tW8HD-qt1TdLvwN20GK8mHYHBkW3hW-Wn3PT1-ff46DCMs04 )  where I=E2=80=99=
+ve spoken with leaders working on reusable identity at Microsoft, Mastercar=
+d, and more than a dozen innovative startups.
+
+Thanks again for reading!
+
+Best,
+
+Riley Hughes
+
+Co-founder and CEO
+
+trinsic.id (https://d2z4Ms04.na1.hubspotlinksstarter.com/Ctc/I8+113/d2z4Ms0=
+4/VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6crjnz3lcq-W69sMD-6lZ3nyW8mWMjD2Dm=
+NV3W5MxM65729b3JV9p7hP35bxV5N7b_1NpqSklzW67f7nR2KVTJhW5h7WdG5ZLjzzW8VvXWh2Y=
+1K77W4H9M5F2337nxVcnngd7L_JM6W22bkB45TBLw6W3sb2nn8DhGycW1ZCKYq9f3jWQW3S21Wv=
+97VNk1N3M36JDfphqzW63lM3H62H5tCW1dCY8n71ZhX5W1K-gXG25Wg6SW2qJRyv5PWzPDW7b8D=
+z18JXkyYW5WCsMT7ShYj5df8ZGF04 )
+
+Trinsic, 2261 Market Street #4395, San Francisco, CA 94114
+
+Unsubscribe (https://hs-21743880.s.hubspotstarter.net/email-unsubscribe/ema=
+il?product=3DemailStarter&checkSubscriptions=3Dall&d=3DVnchcl5mqDr-VGW0qB4f=
+N0QNW4fn9T53zbV8YW3Fbt5q7VkjYLN1fk4d_ks-Z_W8BkYvN71_MqHW53q0vc6Ys0rQW1MWvzm=
+4LD3xpMGKd_P20N6wW71glHt7cRzGyW4wLxD_4mGMCl51Rqv41&v=3D2&email=3D0xstruct%4=
+0gmail.com&_hsenc=3Dp2ANqtz--7Y5tgIFryBF4TCegXAlnUrrzShly8TZMttfmwulNWuchua=
+8R0nP9LoRCYsjBncbKT6ZY0lABeOeasY-e0g2bu5bBYIg&_hsmi=3D282060275 )
+Manage preferences (https://hs-21743880.s.hubspotstarter.net/email-unsubscr=
+ibe/email?product=3DemailStarter&d=3DVnchcl5mqDr-VGW0qB4fN0QNW4fn9T53zbV8YW=
+3Fbt5q7VkjYLN1fk4d_ks-Z_W8BkYvN71_MqHW53q0vc6Ys0rQW1MWvzm4LD3xpMGKd_P20N6wW=
+71glHt7cRzGyW4wLxD_4mGMCl51Rqv41&v=3D2&email=3D0xstruct%40gmail.com&_hsenc=
+=3Dp2ANqtz--7Y5tgIFryBF4TCegXAlnUrrzShly8TZMttfmwulNWuchua8R0nP9LoRCYsjBncb=
+KT6ZY0lABeOeasY-e0g2bu5bBYIg&_hsmi=3D282060275 )
+------=_Part_2594513_1221296650.1701637552320
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>E-book download: The future of identity is reusable</title>
+    <meta property=3D"og:title" content=3D"E-book download: The future of i=
+dentity is reusable">
+    <meta name=3D"twitter:title" content=3D"E-book download: The future of =
+identity is reusable">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #ffffff;padding: 20px 0 !import=
+ant}
+</style>
+<![endif]-->
+   =20
+     =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"http://21743880.hs-sites.com/-temporary-slug-b24b2e0e-3fb3-4755-b6=
+c5-474cab892410"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !=
+((mso)|(IE))]><!-- --><style type=3D"text/css">@media only screen and (max-=
+width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stre=
+tch-cta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+}</style><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapper_=
+main a[x-apple-data-detectors]{color:inherit !important;text-decoration:non=
+e !important;font-size:inherit !important;font-family:inherit !important;fo=
+nt-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#ffffff" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#0=
+00000; word-break:break-word">
+   =20
+<div id=3D"preview_text" style=3D"display:none;font-size:1px;color:#ffffff;=
+line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">Th=
+ank you for downloading 'The future of identity is reusable'! We look forwa=
+rd to your feedback and thoughts on future content pieces.</div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" style=3D"background-color:#ffffff" b=
+gcolor=3D"#ffffff">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table hse-full=
+-width-template" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-spacin=
+g:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-r=
+space:0pt; margin:0; padding:0; width:100% !important; min-width:320px !imp=
+ortant; height:100% !important" width=3D"100%" height=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#000000; word-break:break-word; padding-top:0px"=
+>
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_email_flex_area" style=3D"color: inherit=
+; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"wi=
+dget" data-hs-cos-type=3D"email_flex_area">  <div id=3D"builtin_section-0" =
+class=3D"hse-section hse-section-full-width" style=3D"padding-left:0px; pad=
+ding-right:0px; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+     =20
+      <!--[if gte mso 9]><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation"
+        width=3D"100%" style=3D"width:100%" bgcolor=3D"#ffffff"
+        style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rs=
+pace:0pt;"
+      ><tbody><tr><td valign=3D"top"><![endif]-->
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container" style=3D"min-width:280px; width:1=
+00%; border-collapse:collapse; border-spacing:0; max-width:100%; Margin-lef=
+t:0; Margin-right:0">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;width:10=
+0%;border-collapse:collapse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:100%;" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation">
+      <tr>
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:100%;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:100%">
+<![endif]-->
+<div id=3D"builtin_column_0-0" class=3D"hse-column">
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-=
+table-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" =
+style=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-famil=
+y:Arial, sans-serif; font-size:15px; color:#000000; word-break:break-word; =
+padding:10px 20px"><div id=3D"hs_cos_wrapper_primary_rich_text_module" clas=
+s=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapp=
+er_primary_rich_text_module_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget=
+ hs_cos_wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit=
+; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-ty=
+pe=3D"rich_text"><p style=3D"mso-line-height-rule:exactly; line-height:175%=
+">Thanks for downloading our e-book, =E2=80=98<a href=3D"https://d2z4Ms04.n=
+a1.hubspotlinksstarter.com/Ctc/I8+113/d2z4Ms04/VVLcts1WgtJ6W53sssp1Gg4LWW7Y=
+8zfc56D50QN6crjq23m2ndW95jsWP6lZ3nxW3jk-sg63ZqRCW8j9mCK57jSr3W5nKdcj8FlDYcV=
+XzLdg1dbC9HN14Q_dpCyqZ8W20-3g19jGcdYW3fK2jg8lnDTGW81Cyp06GD3Y_W5cvGBR83WCgP=
+W49dnpG5NNqzvW2b01kM85QdKSW1gLqhb1v5ZWlW3Nq6Ml6Zzl4jW7sLgwW5sqTGpW8JtRLb2DB=
+jBsW8jFYPp45J4t3W5GWHt98SCnSXW2n0lZ99bNMYWW7Sb8Zy2MmKlnN8jy4YmMKp5vW6d5Y0y5=
+Q2QYyW3k72Yr5YHx9sW2TDCTg6ztvk9W6WPMsW2X8SmpN4yj_B-VRRJ-W36Kbbk4cr4HFW4ZcLm=
+q2J4JltVJlbcY54NKFXW4lPhy-2lmNqrW5TvN8q437X89f3jSjXl04" rel=3D"noopener" st=
+yle=3D"mso-line-height-rule:exactly; color:#006be5" data-hs-link-id=3D"0" t=
+arget=3D"_blank">The future of identity is <em>reusable</em></a>=E2=80=99! =
+If you have any feedback after reading, please respond to this email, or co=
+nnect with me on <a href=3D"https://d2z4Ms04.na1.hubspotlinksstarter.com/Ct=
+c/I8+113/d2z4Ms04/VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6crjp83m2ndW7lCdLW=
+6lZ3nkW1b05Vm5H3khfW24kzqd9kPPb7W5vFh_n1M3-N0W8V8Jsf8WsPZyW8qg_3G89-tDPW8j-=
+Hkb3B8Dp1W7MkjVY1b1G8cW7dLwwn4fHlMKW35MJGY3ZD6VzW2FWv2C4Bfvs_W5xFPYJ143h94W=
+1W3-5H2JtpyVW3Gp9hL6y_cM1W156YYq8wWK8pW2dj6q83CHvsWW7Z0mqp2ZMxmsW3Z-kXr5s1J=
+L-W4fX0077zx2DZW5dkfGx6yT933W56qq3b2GZdcXW8bwHB76v42KVN7pJxblMQC_KW3Q4xdx6N=
+FlgpW7NTJSc1h_-80f2R-6yP04" rel=3D"noopener" style=3D"mso-line-height-rule:=
+exactly; color:#006be5" data-hs-link-id=3D"0" target=3D"_blank">LinkedIn</a=
+></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">For more insigh=
+ts about the future of identity, consider subscribing to <a href=3D"https:/=
+/d2z4Ms04.na1.hubspotlinksstarter.com/Ctc/I8+113/d2z4Ms04/VVLcts1WgtJ6W53ss=
+sp1Gg4LWW7Y8zfc56D50QN6crjnT3m2ndW6N1vHY6lZ3plVRdBDQ7gs5ckN7MsRd2p4y0MW1z15=
+mz6gvfM_W3sT4rY3VQv1mN6dKMrScwNfpW72Kz5S5qVJWXW68-mk32JjYHPW69fq-w8Nzzy6W39=
+4V7m7NPhrmVQ9vx11DmWVxW4XVgyg8FVWMdW1GKKK_8QFCnSW71VhgL4Cj66gW6LCs2n1wnrf6V=
+pk8YY67dR7LW3vKhhv7D0TnXW57Zhl77Pxz3SW6kbMyz6KbtcgW6dvjFx5NSj3mW90Zlf_4Qg4f=
+sVHTFBh33pl6SW7pq80_6Z_DzLf6pzBjH04" rel=3D"noopener" style=3D"mso-line-hei=
+ght-rule:exactly; color:#006be5" data-hs-link-id=3D"0" target=3D"_blank">ou=
+r podcast</a>&nbsp;where I=E2=80=99ve spoken with leaders working on reusab=
+le identity at Microsoft, Mastercard, and more than a dozen innovative star=
+tups.&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Thanks again fo=
+r reading!</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%"><!-- notionvc: =
+3efc3dc4-fd15-4ff2-aa31-a45207874af8 --></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Best,<br><br></=
+p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">Riley Hughes<br=
+>Co-founder and CEO<br><a href=3D"https://d2z4Ms04.na1.hubspotlinksstarter.=
+com/Ctc/I8+113/d2z4Ms04/VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QN6crjnz3m2ndW=
+69sMD-6lZ3m9W1g0rm94lG5ylW85zYnm7zW9Y_W78p9TJ8cR6H_N8QHLs7RmvY8W1PtPgp7VzGZ=
+cN57qCWmY57YwN9dCWCH9jkKNN2QcNhjM0-w9W60GWDk1yRgcyW1VtbKp2tJNJ3W4KZbRq7ScKh=
+JW8bfgqF5zfj_tW6dQmPy4m-3KdW3ryDzL5HdPZXW7Q0n3d5MttyFW5n_4Kb5JS1B2W64cvKn74=
+Wt2fW3tfJVd762fSdW45BWzl6_Zz1hW5Ld90M3ZlHbqf77Px9P04" style=3D"mso-line-hei=
+ght-rule:exactly; color:#006be5" data-hs-link-id=3D"0" target=3D"_blank">tr=
+insic.id</a></p>
+<p style=3D"mso-line-height-rule:exactly; line-height:175%">&nbsp;</p></div=
+></div></td></tr></tbody></table>
+<div id=3D"hs_cos_wrapper_footer_module" class=3D"hs_cos_wrapper hs_cos_wra=
+pper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size:=
+ inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-h=
+s-cos-type=3D"module"><table role=3D"presentation" class=3D"hse-footer hse-=
+secondary" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"bord=
+er-spacing:0 !important; border-collapse:collapse; mso-table-lspace:0pt; ms=
+o-table-rspace:0pt; font-family:Arial, sans-serif; font-size:12px; line-hei=
+ght:135%; color:#23496d; margin-bottom:0; padding:0">
+  <tbody>
+    <tr>
+      <td align=3D"left" valign=3D"top" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#000000; word-break:break-word; text-align:left; margin-bottom:0; l=
+ine-height:135%; padding:10px 0px">
+        <p style=3D"mso-line-height-rule:exactly; font-family:Arial, sans-s=
+erif; font-size:12px; font-weight:normal; text-decoration:none; font-style:=
+normal; color:#23496d">
+          Trinsic, 2261 Market Street #4395, San Francisco, CA 94114
+        </p>
+        <p style=3D"mso-line-height-rule:exactly">
+          <a data-unsubscribe=3D"true" href=3D"https://hs-21743880.s.hubspo=
+tstarter.net/email-unsubscribe/email?product=3DemailStarter&amp;checkSubscr=
+iptions=3Dall&amp;d=3DVnchcl5mqDr-VGW0qB4fN0QNW4fn9T53zbV8YW3Fbt5q7VkjYLN1f=
+k4d_ks-Z_W8BkYvN71_MqHW53q0vc6Ys0rQW1MWvzm4LD3xpMGKd_P20N6wW71glHt7cRzGyW4w=
+LxD_4mGMCl51Rqv41&amp;v=3D2&amp;email=3D0xstruct%40gmail.com&amp;utm_source=
+=3Dhs_automation&amp;utm_medium=3Demail&amp;utm_content=3D282060275&amp;_hs=
+enc=3Dp2ANqtz-_86hgtUHQft8HtKdE2jzYluq8ESp35aVLXCQwWWybI6LjS3rCUQ_XkLnwpiPe=
+INgstQpg_uPjaatssuMO0trcxHEOgDw&amp;_hsmi=3D282060275" style=3D"mso-line-he=
+ight-rule:exactly; font-family:Helvetica,Arial,sans-serif; font-size:12px; =
+color:#006be5; font-weight:normal; text-decoration:underline; font-style:no=
+rmal" data-hs-link-id=3D"0" target=3D"_blank">Unsubscribe</a>
+          <a data-unsubscribe=3D"true" href=3D"https://hs-21743880.s.hubspo=
+tstarter.net/email-unsubscribe/email?product=3DemailStarter&amp;d=3DVnchcl5=
+mqDr-VGW0qB4fN0QNW4fn9T53zbV8YW3Fbt5q7VkjYLN1fk4d_ks-Z_W8BkYvN71_MqHW53q0vc=
+6Ys0rQW1MWvzm4LD3xpMGKd_P20N6wW71glHt7cRzGyW4wLxD_4mGMCl51Rqv41&amp;v=3D2&a=
+mp;email=3D0xstruct%40gmail.com&amp;utm_source=3Dhs_automation&amp;utm_medi=
+um=3Demail&amp;utm_content=3D282060275&amp;_hsenc=3Dp2ANqtz-_86hgtUHQft8HtK=
+dE2jzYluq8ESp35aVLXCQwWWybI6LjS3rCUQ_XkLnwpiPeINgstQpg_uPjaatssuMO0trcxHEOg=
+Dw&amp;_hsmi=3D282060275" style=3D"mso-line-height-rule:exactly; font-famil=
+y:Helvetica,Arial,sans-serif; font-size:12px; color:#006be5; font-weight:no=
+rmal; text-decoration:underline; font-style:normal" data-hs-link-id=3D"0" t=
+arget=3D"_blank">Manage preferences</a>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+      <!--[if gte mso 9]></td></tr></table><![endif]-->
+  =20
+  </div>
+</div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://d2z4Ms04.na1.hubspotlinksstarter.com/Cto/I8+113/d2z4Ms0=
+4/VVLcts1WgtJ6W53sssp1Gg4LWW7Y8zfc56D50QW6crj7-8fYxKz2YG1" alt=3D"" width=
+=3D"1" height=3D"1" border=3D"0" style=3D"display:none!important;min-height=
+:1px!important;width:1px!important;border-width:0!important;margin-top:0!im=
+portant;margin-bottom:0!important;margin-right:0!important;margin-left:0!im=
+portant;padding-top:0!important;padding-bottom:0!important;padding-right:0!=
+important;padding-left:0!important"></body></html>
+------=_Part_2594513_1221296650.1701637552320--

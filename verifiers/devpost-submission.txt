@@ -1,0 +1,451 @@
+Delivered-To: 0xstruct@gmail.com
+Received: by 2002:a59:ca44:0:b0:3b6:8eb2:5800 with SMTP id v4csp348336vqt;
+        Sat, 25 Mar 2023 05:32:13 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bcH3kZ8AD8WKAGtTR9MV2oTeUJHtsXLdyBEdGbO37QyKoHUcMMLpZ2JjscwPbrfEYTYH6v
+X-Received: by 2002:a17:902:e80c:b0:19e:82aa:dc8a with SMTP id u12-20020a170902e80c00b0019e82aadc8amr7522419plg.22.1679747532911;
+        Sat, 25 Mar 2023 05:32:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1679747532; cv=none;
+        d=google.com; s=arc-20160816;
+        b=okqGfiOHglM/KbP0pNpZhKot8Fa/GKXXIti0yyLwiZWF1+y+f0mHYUIy4z4F8YxGZP
+         Hxi/9lET7B+A0EfF7AmlJ2ErGRWA2MtGuFMf00acMivlxBIavU3XT+6qI1edQNSwKEqc
+         2ts7y9Pxhwi1vQodchB/fnOByY4zfmfH6Yj4WGojIea88fpP70e9THhBYSToR7/3ydD6
+         sRGGmVHUb42IW4HcJAubUFf2LRlKmdUs5QM8hKssqzMIBmL+zihEOJfuSXTorCMS7f73
+         7/qmoOLOOTA6Fb2aTwPJdNQ6l3eZxEFVQH+v4B69CnxByLzqAgxjfwx76AfnF6cSltBw
+         /slg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:from:subject:mime-version:date:dkim-signature
+         :dkim-signature;
+        bh=59mAIW3DzX4sI0WzrBklTZmwuu24MEXYf5Ji5wWM4tg=;
+        b=LO5kkHADhd5vNvpuuxEfpfu8s0y6p97VK1Qfi2zXuLZZr+IXUTXPkcwBpYWmt8oSkr
+         BTNSy1pJcKECtAUSZL20tn5hv4BBpmsURI8tJb2qbFZGtwosnCzvY+CkAlxoWJRBTIwz
+         soE988n7WIxjhI/88kyYXMEJp8A1rGSdLRhPkAi1aJZoN3rItPMjhhaXlHDV6o6QMs27
+         4hE2I3oaBmJlTXTYjzsNfLAxLxCcPaz0W0UgWpZneDsQneopFWQL8pCdAVqHZEFsNupN
+         Tk73S1Cw/fflzWyMQ+HBPW8/BfTo/HuKD547wcocGbUCg4kSuET6frUUEam3Hxbc46T+
+         EUMg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@cio8.devpost.com header.s=krs header.b=ENrw2pjO;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=oyA88jz3;
+       spf=pass (google.com: domain of postmaster@cio8.devpost.com designates 69.72.44.6 as permitted sender) smtp.mailfrom=postmaster@cio8.devpost.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=devpost.com
+Return-Path: <postmaster@cio8.devpost.com>
+Received: from m44-6.mailgun.net (m44-6.mailgun.net. [69.72.44.6])
+        by mx.google.com with UTF8SMTPS id r74-20020a632b4d000000b00513476a0020si110068pgr.256.2023.03.25.05.32.12
+        for <0xstruct@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Mar 2023 05:32:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of postmaster@cio8.devpost.com designates 69.72.44.6 as permitted sender) client-ip=69.72.44.6;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@cio8.devpost.com header.s=krs header.b=ENrw2pjO;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=oyA88jz3;
+       spf=pass (google.com: domain of postmaster@cio8.devpost.com designates 69.72.44.6 as permitted sender) smtp.mailfrom=postmaster@cio8.devpost.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=devpost.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=cio8.devpost.com; q=dns/txt; s=krs; t=1679747532; x=1679754732; h=Message-Id: To: To: From: From: Subject: Subject: Content-Type: Mime-Version: Date: X-Feedback-Id: Sender; bh=59mAIW3DzX4sI0WzrBklTZmwuu24MEXYf5Ji5wWM4tg=; b=ENrw2pjOSDvVVlxtwWCdkAVQIwXldk/A1wvozd318Q/aPkvvdTU0PyJPM2AKWHH7cf3MRRHM Av2UGv0OsJ8zhKsixJnx5Q5knlr8Nxv34pbIr4aTF5YGeuHJj983DD9C3ccoQjM4Ciotzyux Z7KI2LOjeYtZHH3VEmBsxJVKMzw=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg; t=1679747532; x=1679754732; h=Message-Id: To: To: From: From: Subject: Subject: Content-Type: Mime-Version: Date: X-Feedback-Id: Sender; bh=59mAIW3DzX4sI0WzrBklTZmwuu24MEXYf5Ji5wWM4tg=; b=oyA88jz3tP1u/hCXM/s5agH2EO609c/z6KpKkb2FymVKtkPGH+PxRMsNyuzXLl7pGRUymGhF Qk7rGhcLQWTlWtv1YYkeJYz+Mt0x5ulF/9FtP3n2m2EcUUOXA3PLjj2PTkof+Ai9839Z+OVl JnkXqZZ4JT7fGsBiHPrlhfm57IU=
+X-Feedback-Id: postmaster@cio8.devpost.com::5e1538d704ac33c28233d67c:mailgun
+X-Mailgun-Sending-Ip: 69.72.44.6
+X-Mailgun-Sid: WyI2ZGU0YSIsIjB4c3RydWN0QGdtYWlsLmNvbSIsImEzYjM5OSJd
+Received: from <unknown> (<unknown> []) by 4d808c93280a with HTTP id 641ee9cc723d3b881740a433; Sat, 25 Mar 2023 12:32:12 GMT
+Date: Sat, 25 Mar 2023 12:32:12 +0000
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary="8c971cfe096dcfabe47eb4c27b2a9f20b69a5eed8270f4aedc223d6f6f8b"
+Subject: Submission confirmed: Fruit Bowl - fun social defi dapp for friendly wagers
+From: Devpost <support@devpost.com>
+To: 0xstruct@gmail.com
+X-Mailgun-Dkim: true
+X-Mailgun-Native-Send: true
+X-Mailgun-Track-Clicks: false
+X-Mailgun-Track-Opens: false
+X-Mailer: Customer.io (dgQIAQDIprsDyKa7AwGHGMFEE4t_ybfsKg3_jIw=; +https://whatis.customeriomail.com)
+X-Report-Abuse-To: badactor@customer.io
+X-Mailgun-Variables: {"email_id": "dgQIAQDIprsDyKa7AwGHGMFEE4t_ybfsKg3_jIw="}
+Message-Id: <20230325123212.ebca20990ae250e8@cio8.devpost.com>
+
+--8c971cfe096dcfabe47eb4c27b2a9f20b69a5eed8270f4aedc223d6f6f8b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+( http://devpost.com )
+
+Hi Struct, thanks for submitting your project to ETHDubai x SushiSwap x Man=
+tle Hackathon.
+
+You can edit your submission ( https://devpost.com/submit-to/17381-ethdubai=
+-x-sushiswap-x-mantle-hackathon/manage/submissions/398226-fruit-bowl-fun-so=
+cial-defi-dapp-for-friendly-wagers/edit?ref_content=3Dsubmission-received&r=
+ef_feature=3Dportfolio&ref_medium=3Demail&utm_campaign=3Dportfolio&utm_cont=
+ent=3Dsubmission_from_software_received_to_submitter&utm_medium=3Demail&utm=
+_source=3Dtransactional ) until Mar 25, 2023 17:00 GMT+4:00, but any edits =
+will be reviewed by the managers before your project is displayed in the ha=
+ckathon submission gallery.
+
+=C2=A9 2023 Devpost, Inc. All rights reserved. Edit your notification setti=
+ngs ( https://devpost.com/notification_subscriptions/Ucxya1teBB4dvr2fih4SqA=
+?ref_content=3Dsubmission-received&ref_feature=3Dportfolio&ref_medium=3Dema=
+il&utm_campaign=3Dportfolio&utm_content=3Dsubmission_from_software_received=
+_to_submitter&utm_medium=3Demail&utm_source=3Dtransactional ).
+--8c971cfe096dcfabe47eb4c27b2a9f20b69a5eed8270f4aedc223d6f6f8b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3.=
+org/1999/xhtml" xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"font-family=
+: sans-serif; color: #575553; margin: 0; padding: 0;"><head>
+<meta name=3D"viewport" content=3D"width=3Ddevice-width"/>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+
+<style type=3D"text/css">
+  /* based on: http://zurb.com/playground/responsive-email-templates */
+ =20
+  /* -------------------------------------=20
+  =09=09GLOBAL=20
+  ------------------------------------- */
+  * {=20
+  =09margin:0;
+  =09padding:0;
+    font-family: sans-serif;
+    color: #575553;=20
+  }
+ =20
+  img {=20
+  =09max-width: 100%;=20
+  }
+ =20
+  body {
+  =09-webkit-font-smoothing:antialiased;=20
+  =09-webkit-text-size-adjust:none;=20
+  =09width: 100%!important;=20
+  =09height: 100%;
+  =09background-color: #ffffff;
+  }
+ =20
+  td {
+    text-align: left;
+  }
+ =20
+  /* -------------------------------------=20
+  =09=09TYPOGRAPHY=20
+  ------------------------------------- */
+  h1,h2,h3,h4,h5,h6 {
+    font-family: sans-serif;=20
+    color:#003e54;
+  }
+ =20
+  h1 {=20
+    font-weight: bold;=20
+    font-size: 30px;
+    line-height: 1.3; =20
+  }
+ =20
+  td.h1 {
+    padding-bottom: 8px;
+  }
+ =20
+  td.project-title {
+    background-color: #f0f0f0;
+    padding: 12px 0;
+  }
+ =20
+  td.project-title h1 {
+    font-size: 16px;
+  }
+ =20
+  h2 {=20
+    font-size: 20px;
+    line-height: 1.4;
+  }
+ =20
+  h2.italics{
+    font-weight: normal;
+    font-style: italic;=20
+  }
+ =20
+  h3 {=20
+    font-weight: bold;=20
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+ =20
+  td.h3 {
+    padding-top: 30px;
+  }
+ =20
+  h4 {=20
+    font-weight: bold;=20
+    font-size: 16px;
+    line-height: 1.5;
+  }
+ =20
+ =20
+  p, ul, ol {=20
+  =09font-weight: normal;=20
+  =09font-size: 16px;=20
+  =09line-height: 1.5;
+  =09color: #575553;
+  }
+ =20
+  p.small {
+    font-size: 14px;
+  }
+ =20
+  td.p {
+    padding-bottom: 16px;
+  }
+ =20
+  a {=20
+    color: #2d9eb2;
+    text-decoration: none;
+  }
+ =20
+  strong a,
+  b a {=20
+    color: #2d9eb2;
+    text-decoration: none;
+  }
+ =20
+  ul, ol {
+    margin-left: 18px;
+  }
+
+ =20
+  /* -------------------------------------=20
+  =09=09HEADER=20
+  ------------------------------------- */
+  table.head-wrap { width: 100%;}
+ =20
+  .head-wrap .container {
+    padding: 16px 0;
+    text-align: left;
+  }
+ =20
+  /* -------------------------------------=20
+  =09=09BODY=20
+  ------------------------------------- */
+  .body-wrap {=20
+    width: 100%;
+    background: white;
+    text-align: left;
+  }
+ =20
+  .body-wrap .container {
+    padding: 20px 0 40px 0;
+    text-align: left;
+  }
+ =20
+  .avatar img {
+    border-radius: 130px;
+  }
+ =20
+  td.avatar {
+    padding-bottom: 12px;
+  }
+ =20
+  td.challenge-image,
+  td.project-image {
+    padding-bottom: 12px;
+  }
+ =20
+  td.tags span {
+    background-color: #f0f0f0;
+    font-size: 14px;
+    padding: 4px 6px;
+    margin-top: 5px;
+    display: inline-block;
+  }
+ =20
+  td.button {
+    padding-top: 30px;
+  }
+ =20
+  td.button-less-padding {
+    padding-top: 14px;
+  }
+ =20
+  td.user-summary {
+    padding-top: 20px;
+  }
+ =20
+  td.user-summary td.avatar  {
+    padding-bottom: 9px;
+  }
+ =20
+  td.user-summary td.h2 {
+    padding-bottom: 4px;
+  }
+ =20
+  td.stats {
+    padding-top: 10px ;
+  }
+ =20
+  td.stats .divider {
+    color: #e6e6e6;
+    padding: 0 5px;
+  }
+  /* -------------------------------------=20
+  =09=09FOOTER=20
+  ------------------------------------- */
+  table.footer-wrap {=20
+    width: 100%;=09
+    clear:both!important;
+  }
+  .footer-wrap .container {
+    padding: 20px 0;
+    text-align: left;
+    border-top: 2px solid #e6e6e6;
+  }
+  .footer-wrap .container p {
+  =09color: #999794;
+  =09font-size: 12px;=09
+  }
+ =20
+  .footer-wrap .container p a:link,=20
+  .footer-wrap .container p a:visited, /* Yahoo! Mail Override */=20
+  .footer-wrap .container p a .yshortcuts /* Yahoo! Mail Override */ {
+    color: #999794;
+    font-weight: normal;
+    text-decoration: underline;
+  }
+ =20
+  /* ---------------------------------------------------=20
+  =09=09RESPONSIVENESS
+  ------------------------------------------------------ */
+ =20
+  /* Set a max-width, and make it display as block so it will automatically=
+ stretch to that width, but will also shrink down on a phone or something *=
+/
+  .container {
+  =09display:block!important;
+  =09max-width:600px!important;
+  =09margin:0 auto!important; /* makes it centered */
+  =09clear:both!important;
+  }
+ =20
+  /* -------------------------------------------=20
+  =09=09PHONE
+  -------------------------------------------- */
+  @media only screen and (max-width: 600px) {
+  =09
+  =09.head-wrap .container,
+  =09.footer-wrap .container {
+  =09  padding: 10px 10px!important;
+  =09}
+  =09
+  =09.body-wrap .container {
+  =09  padding: 16px 10px 24px 10px!important;
+  =09}
+  =09
+  }
+</style>
+
+</head>
+=20
+<body bgcolor=3D"#ffffff" style=3D"font-family: sans-serif; color: #575553;=
+ -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width=
+: 100% !important; height: 100%; background-color: #ffffff; margin: 0; padd=
+ing: 0;">
+
+<!-- HEADER -->
+<table class=3D"head-wrap" bgcolor=3D"#ffffff" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" style=3D"font-family: sans-serif; color: #575553; widt=
+h: 100%; margin: 0; padding: 0;">
+=09<tbody><tr style=3D"font-family: sans-serif; color: #575553; margin: 0; =
+padding: 0;">
+=09=09<td class=3D"container" style=3D"font-family: sans-serif; color: #575=
+553; text-align: left; display: block !important; max-width: 600px !importa=
+nt; clear: both !important; margin: 0 auto; padding: 16px 0;" align=3D"left=
+">
+=09=09=09<a href=3D"https://e.customeriomail.com/e/c/eyJlbWFpbF9pZCI6ImRnUU=
+lBUURJcHJzRHlLYTdBd0dIR01GRUU0dF95YmZzS2czX2pJdz0iLCJocmVmIjoiaHR0cDovL2Rld=
+nBvc3QuY29tIiwiaW50ZXJuYWwiOiIwOGYyMDFlODE3YzhhNmJiMDMiLCJsaW5rX2lkIjo2NTUx=
+NTg3fQ/3689276200838c6f61d30ad2683af61f25292082288a743c977c3f16fafb9f57" ta=
+rget=3D"_blank" style=3D"font-family: sans-serif; color: #2d9eb2; text-deco=
+ration: none; margin: 0; padding: 0; border: none;"><img src=3D"https://cha=
+llengepost-assets.s3.amazonaws.com/emails/devpost-email-logo.png" height=3D=
+"30" style=3D"height: 30px; font-family: sans-serif; color: #575553; max-wi=
+dth: 100%; margin: 0; padding: 0; border: none;"/></a>
+=09=09</td>
+=09</tr>
+</tbody></table>
+<!-- /HEADER -->
+
+
+<!-- BODY -->
+<table class=3D"body-wrap" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ style=3D"font-family: sans-serif; color: #575553; width: 100%; background-=
+color: white; text-align: left; margin: 0; padding: 0;" bgcolor=3D"white">
+=09<tbody><tr style=3D"font-family: sans-serif; color: #575553; margin: 0; =
+padding: 0;">
+=09=09<td class=3D"container" bgcolor=3D"#FFFFFF" align=3D"top" style=3D"fo=
+nt-family: sans-serif; color: #575553; text-align: left; display: block !im=
+portant; max-width: 600px !important; clear: both !important; margin: 0 aut=
+o; padding: 20px 0 40px;">
+  =09 =20
+  =09  <p style=3D"font-family: sans-serif; color: #575553; font-weight: no=
+rmal; font-size: 16px; line-height: 1.5; margin: 0; padding: 0;">Hi Struct,=
+ thanks for submitting your project to ETHDubai x SushiSwap x Mantle Hackat=
+hon.</p>
+
+<br style=3D"font-family: sans-serif; color: #575553; margin: 0; padding: 0=
+;"/>
+=20
+<p style=3D"font-family: sans-serif; color: #575553; font-weight: normal; f=
+ont-size: 16px; line-height: 1.5; margin: 0; padding: 0;"><a href=3D"https:=
+//e.customeriomail.com/e/c/eyJlbWFpbF9pZCI6ImRnUUlBUURJcHJzRHlLYTdBd0dIR01G=
+RUU0dF95YmZzS2czX2pJdz0iLCJocmVmIjoiaHR0cHM6Ly9kZXZwb3N0LmNvbS9zdWJtaXQtdG8=
+vMTczODEtZXRoZHViYWkteC1zdXNoaXN3YXAteC1tYW50bGUtaGFja2F0aG9uL21hbmFnZS9zdW=
+JtaXNzaW9ucy8zOTgyMjYtZnJ1aXQtYm93bC1mdW4tc29jaWFsLWRlZmktZGFwcC1mb3ItZnJpZ=
+W5kbHktd2FnZXJzL2VkaXQ_cmVmX2NvbnRlbnQ9c3VibWlzc2lvbi1yZWNlaXZlZFx1MDAyNnJl=
+Zl9mZWF0dXJlPXBvcnRmb2xpb1x1MDAyNnJlZl9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fY2FtcGF=
+pZ249cG9ydGZvbGlvXHUwMDI2dXRtX2NvbnRlbnQ9c3VibWlzc2lvbl9mcm9tX3NvZnR3YXJlX3=
+JlY2VpdmVkX3RvX3N1Ym1pdHRlclx1MDAyNnV0bV9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fc291c=
+mNlPXRyYW5zYWN0aW9uYWwiLCJpbnRlcm5hbCI6IjA4ZjIwMWU4MTdjOGE2YmIwMyIsImxpbmtf=
+aWQiOjEwNjkyMzJ9/780f1becc25567733d6865d80b10699aad498dc2d2d12e7239102098f1=
+4b4fc3" style=3D"font-family: sans-serif; color: #2d9eb2; text-decoration: =
+none; margin: 0; padding: 0;">You can edit your submission</a> until Mar 25=
+, 2023 17:00 GMT+4:00, but any edits will be reviewed by the managers befor=
+e your project is displayed in the hackathon submission gallery.</p>
+
+=09=09</td> <!-- /td.container -->
+=09</tr>
+</tbody></table>
+<!-- /BODY -->
+
+<!-- FOOTER -->
+<table class=3D"footer-wrap" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" bgcolor=3D"#ffffff" style=3D"font-family: sans-serif; color: #575553; wi=
+dth: 100%; clear: both !important; margin: 0; padding: 0;">
+=09<tbody><tr style=3D"font-family: sans-serif; color: #575553; margin: 0; =
+padding: 0;">
+=09=09<td class=3D"container" style=3D"font-family: sans-serif; color: #575=
+553; text-align: left; border-top-width: 2px; border-top-color: #e6e6e6; bo=
+rder-top-style: solid; display: block !important; max-width: 600px !importa=
+nt; clear: both !important; margin: 0 auto; padding: 20px 0;" align=3D"left=
+">
+  =09=09<p style=3D"font-family: sans-serif; color: #999794; font-weight: n=
+ormal; font-size: 12px; line-height: 1.5; margin: 0; padding: 0;">=C2=A9 20=
+23 Devpost, Inc. All rights reserved. <a target=3D"_blank" href=3D"https://=
+e.customeriomail.com/e/c/eyJlbWFpbF9pZCI6ImRnUUlBUURJcHJzRHlLYTdBd0dIR01GRU=
+U0dF95YmZzS2czX2pJdz0iLCJocmVmIjoiaHR0cHM6Ly9kZXZwb3N0LmNvbS9ub3RpZmljYXRpb=
+25fc3Vic2NyaXB0aW9ucy9VY3h5YTF0ZUJCNGR2cjJmaWg0U3FBP3JlZl9jb250ZW50PXN1Ym1p=
+c3Npb24tcmVjZWl2ZWRcdTAwMjZyZWZfZmVhdHVyZT1wb3J0Zm9saW9cdTAwMjZyZWZfbWVkaXV=
+tPWVtYWlsXHUwMDI2dXRtX2NhbXBhaWduPXBvcnRmb2xpb1x1MDAyNnV0bV9jb250ZW50PXN1Ym=
+1pc3Npb25fZnJvbV9zb2Z0d2FyZV9yZWNlaXZlZF90b19zdWJtaXR0ZXJcdTAwMjZ1dG1fbWVka=
+XVtPWVtYWlsXHUwMDI2dXRtX3NvdXJjZT10cmFuc2FjdGlvbmFsIiwiaW50ZXJuYWwiOiIwOGYy=
+MDFlODE3YzhhNmJiMDMiLCJsaW5rX2lkIjozNTIwNTk2NX0/7bbc8db5dd47e6cef4abba00a2c=
+f70ff28ef5efa9625564af45c1165ac02b311" style=3D"font-family: sans-serif; co=
+lor: #999794; text-decoration: underline; font-weight: normal; margin: 0; p=
+adding: 0;">Edit your notification settings</a>.</p>
+=09=09</td>
+=09</tr>
+</tbody></table>
+<!-- /FOOTER -->
+
+
+
+<img src=3D"https://e.customeriomail.com/e/o/eyJlbWFpbF9pZCI6ImRnUUlBUURJcH=
+JzRHlLYTdBd0dIR01GRUU0dF95YmZzS2czX2pJdz0ifQ=3D=3D" style=3D"height: 1px !i=
+mportant; max-height: 1px !important; max-width: 1px !important; width: 1px=
+ !important; display: none !important;"/></body></html>
+--8c971cfe096dcfabe47eb4c27b2a9f20b69a5eed8270f4aedc223d6f6f8b--

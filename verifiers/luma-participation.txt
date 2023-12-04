@@ -1,0 +1,591 @@
+Delivered-To: 0xstruct@gmail.com
+Received: by 2002:a59:9185:0:b0:431:e673:1299 with SMTP id s5csp2463371vqg;
+        Sat, 25 Nov 2023 08:01:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHPZGvOFhoctQwWrOwYWwIgbkaEXd5tC+Hmnn1h8B0ieB9xx5d1HAVr7UWrYhJMHnB6lbfg
+X-Received: by 2002:a05:6a20:4293:b0:18c:e9e:e17c with SMTP id o19-20020a056a20429300b0018c0e9ee17cmr6003275pzj.25.1700928059821;
+        Sat, 25 Nov 2023 08:00:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1700928059; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jTji3t8nBoOBfq9exg6Frxk+Jsd/XtDmjTt6nWnITK0edLX07WhG5A3kSJ0AkK564a
+         GPlln35lryj55NIQZXlrP0ZAYO2jTB85+u4kwT2hJuciICkE7qGkL8k4DeIQBKzaU24d
+         fv6c/DzwJyA3pFjgjNvf+Y5+zCmOqEYAwUJkNhK+0/dGigbQSRz9nWS6/gIWXHB/17NP
+         lFuXWSw3wTtgXsczWu+dncyyiXwk49LYW+EE1mwChjMFkobNUdKIMr7iOwLA/585hWNN
+         fQjRszgUHidvbrDw6jjhXmUf53okTlp7WAhf7KvzB2SuaJ2EJjEgRIIJzOTXecMnQkRo
+         +m3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:date:message-id:subject:reply-to:to:from
+         :dkim-signature:dkim-signature;
+        bh=GSTXqvWybPopuR2FtDzZ5AldYGx/zApGGchtKuPZBr4=;
+        fh=W5NVSPh9nHTlT1yHHDdUai2NcWErgJ5IxyIqYfxa4wc=;
+        b=KypPm/PybnCDJtBd0xMJppGWrWLqOQyjZW0TmD8q5smnMJBTURubeZJQM1XFBvgamR
+         VtfaPzSkQul1KiWsGxVFNI3bXKx2Hxj/8bwzvp5lJ1fIRulu9qtyJoLCSUArWvBFZG/A
+         cmastmmHBkVntdfzp6HDcq+fayqVRCKBJEhP4fGv0PifncZgkNoriUzvhQRgiM94Tx2P
+         JLMyZSKflp9KrfYqEBSLo6yxxwA2c7HmbUWzZ52xlQQgfYt711aIGukqylO0s8ybG7BI
+         d5hiclP15m1/y2FAdrLj3xUq3MlfRveo811qW4b34gUGZpVlbRXf/AOlu6B9Ld85gHfg
+         6qUw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@luma-mail.com header.s=s5x5ddloibvzl7dyrdrbashlyuwlaaax header.b=EAJpmD9n;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=rj9epebK;
+       spf=pass (google.com: domain of 0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com designates 54.240.116.24 as permitted sender) smtp.mailfrom=0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=luma-mail.com
+Return-Path: <0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com>
+Received: from a116-24.smtp-out.us-west-2.amazonses.com (a116-24.smtp-out.us-west-2.amazonses.com. [54.240.116.24])
+        by mx.google.com with ESMTPS id j24-20020a63ec18000000b005b902b61cbcsi5701046pgh.723.2023.11.25.08.00.59
+        for <0xstruct@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 Nov 2023 08:00:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com designates 54.240.116.24 as permitted sender) client-ip=54.240.116.24;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@luma-mail.com header.s=s5x5ddloibvzl7dyrdrbashlyuwlaaax header.b=EAJpmD9n;
+       dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=rj9epebK;
+       spf=pass (google.com: domain of 0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com designates 54.240.116.24 as permitted sender) smtp.mailfrom=0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=luma-mail.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=s5x5ddloibvzl7dyrdrbashlyuwlaaax; d=luma-mail.com; t=1700928059; h=Content-Type:From:To:Reply-To:Subject:Message-ID:Date:MIME-Version; bh=U7mW/i2tcEn8xa+laDYc7fc24m7WHo8iCFt4/EHAsgE=; b=EAJpmD9nN+HruDMD9LlNP7iNTaZCwhxKjK34EA1M2az+i4nifCgFPxho2vA/K8QU xsMjC4tLU0kFXypHVRu4Qv6phHPgchJ70BELfpRrH4t78QCjW9EkAhVb1URr/vt5b3S VyR5xrbrzGJ9Xzvf3FlqFksflcbZWz5jl7L1fSFY2IiGWQRiyDbYn+EbHHEDr3Gyt0w CYltuyxIL4m97GpqUoVLItd81WyNuFlyv2ul6/WcE7iaIWI+CaRmDVmLlNy2FAWmS/L IomJaJ02mHDFzUmTgclquRjsiylGvOv4utZmFM4J3I+ntLIUiX/ftzfeRkyO+q17TyR kh15FMy3xw==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1700928059; h=Content-Type:From:To:Reply-To:Subject:Message-ID:Date:MIME-Version:Feedback-ID; bh=U7mW/i2tcEn8xa+laDYc7fc24m7WHo8iCFt4/EHAsgE=; b=rj9epebKp+RtzqdOPnZbqu4ICMGnKlwyoMudixpf15gYjZIGSuhLiAZMQSsBiOZA iHAI1Qol3nmaYCEYQIY3LxPXK4+GHj6JaMWI+4FNdXY5xlL5Vy6C7VnJDeoW4x2ubuZ 7K2IrFkI2aib4c7g8w9wUPnMfdDFRI1pPGV8w1KE=
+Content-Type: multipart/alternative; boundary="--_NmP-5e17e67ff7170220-Part_1"
+From: Luma <noreply@luma-mail.com>
+To: 0xstruct@gmail.com
+Reply-To: brb@push.org
+Subject: Thanks for joining BRB Online - Open Worldwide with bounties $55000 +
+Message-ID: <0101018c0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000@us-west-2.amazonses.com>
+Date: Sat, 25 Nov 2023 16:00:59 +0000
+MIME-Version: 1.0
+Feedback-ID: 1.us-west-2.8b35YBY+LtDz6cPPlkX7VvLgReyfk0JzFCEDxPQigUM=:AmazonSES
+X-SES-Outgoing: 2023.11.25-54.240.116.24
+
+----_NmP-5e17e67ff7170220-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Thank you for joining
+BRB Online - Open Worldwide with bounties $55000 +
+
+How did you like BRB Online - Open Worldwide with bounties $55000 +?
+
+Great https://lu.ma/survey-response?pk=g-5WGFa9gGve5uwDj&rt=5
+
+Good https://lu.ma/survey-response?pk=g-5WGFa9gGve5uwDj&rt=4
+
+Meh https://lu.ma/survey-response?pk=g-5WGFa9gGve5uwDj&rt=3
+
+Bad https://lu.ma/survey-response?pk=g-5WGFa9gGve5uwDj&rt=2
+
+Terrible https://lu.ma/survey-response?pk=g-5WGFa9gGve5uwDj&rt=1
+
+Sent using https://lu.ma
+----_NmP-5e17e67ff7170220-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+  <head>
+    <title></title>
+    <!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <!--<![endif]-->
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+    <style type=3D"text/css">
+      #outlook a { padding:0; }
+      body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size=
+-adjust:100%; }
+      table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-r=
+space:0pt; }
+      img { border:0;height:auto;line-height:100%; outline:none;text-decora=
+tion:none;-ms-interpolation-mode:bicubic; }
+      p { display:block;margin:13px 0; }
+    </style>
+    <!--[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+    <!--[if lte mso 11]>
+    <style type=3D"text/css">
+      .mj-outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]-->
+   =20
+      <!--[if !mso]><!-->
+        <link href=3D"https://fonts.googleapis.com/css?family=3DRoboto:300,=
+400,500,700" rel=3D"stylesheet" type=3D"text/css">
+        <style type=3D"text/css">
+          @import url(https://fonts.googleapis.com/css?family=3DRoboto:300,=
+400,500,700);
+        </style>
+      <!--<![endif]-->
+
+   =20
+   =20
+    <style type=3D"text/css">
+      @media only screen and (min-width:480px) {
+        .mj-column-per-100 { width:100% !important; max-width: 100%; }
+      }
+    </style>
+    <style media=3D"screen and (min-width:480px)">
+      .moz-text-html .mj-column-per-100 { width:100% !important; max-width:=
+ 100%; }
+    </style>
+   =20
+ =20
+    <style type=3D"text/css">
+   =20
+   =20
+
+    @media only screen and (max-width:479px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }
+ =20
+    </style>
+    <style type=3D"text/css">
+    h1 {
+              font-size: 24px;
+              line-height: 32px;
+              margin-top: 32px;
+              margin-bottom: 28px;
+            }
+
+            h2 {
+              font-size: 20px;
+              line-height: 28px;
+              margin-top: 24px;
+              margin-bottom: 20px;
+            }
+
+            p {
+              margin-top: 0;
+              margin-bottom: 16px;
+            }
+
+            p.small {
+              font-size: 14px;
+              margin-bottom: 8px;
+            }
+
+            hr {
+              border-top: 1px solid #ebeced;
+            }
+
+            blockquote {
+              border-left: 2px solid #ebeced;
+              padding-left: 1rem;
+              margin-left: 0;
+            }
+
+            a {
+              color: #de3163;
+              text-decoration: none !important;
+            }
+
+            .mirror-content a, a.cta-link {
+              color: #de3163 !important;
+              text-decoration: none !important;
+            }
+
+            .mirror-content li p {
+              margin: 4px 0;
+            }
+
+            .mirror-content a.btn {
+              margin-top: 0.5rem;
+              color: white !important;
+            }
+
+            .mirror-content pre {
+              /* We need to wrap long lines, otherwise the email will scrol=
+l horizontally
+                 on some clients like Superhuman */
+              white-space: pre-wrap !important;
+              padding: 1rem;
+              border-radius: 4px;
+              background-color: #f4f5f6 !important;
+            }
+
+            table.time-pill {
+              background-color: #f4f5f6;
+              border-radius: 4px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+              width: 30%;
+            }
+
+            td.time-pill-content {
+              text-align: center;
+              color: #737577;
+              min-width: 130px;
+            }
+
+            td.time-pill-content.date {
+              font-size: 14px;
+              font-weight: 500;
+              padding-top: 6px;
+            }
+
+            td.time-pill-content.time {
+              font-size: 12px;
+              padding-bottom: 6px;
+            }
+
+            @media all and (max-width: 400px) {
+              table.time-pill {
+                width: 40%;
+              }
+            }
+
+            table.survey-pill {
+              background-color: #f4f5f6;
+              border-radius: 4px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+              width: 20%;
+              min-width: 60px;
+            }
+
+            td.survey-pill-content {
+              text-align: center;
+              padding: 12px 8px;
+            }
+
+            td.survey-pill-content a {
+              padding: 16px 8px;
+            }
+
+            td.survey-pill-content.emoji {
+              font-size: 28px;
+            }
+
+            .calendar-red {
+              color: #d86156;
+            }
+
+            .col-50 {
+              width: 50% !important;
+              max-width: 50%;
+            }
+    </style>
+   =20
+  </head>
+  <body style=3D"word-spacing:normal;">
+   =20
+   =20
+      <div
+         style=3D""
+      >
+       =20
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px=
+;" width=3D"600" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"margin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:16px;text-ali=
+gn:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:568px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:top;padding:0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px;paddin=
+g-top:32px;padding-bottom:32px;word-break:break-word;"
+                >
+                 =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"border-collapse:collapse;border-spacing:0px;"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"width:50px;">
+             =20
+      <img
+         src=3D"https://files.zmurl.com/email/star-icon.png" style=3D"borde=
+r:0;display:block;outline:none;text-decoration:none;height:50px;width:100%;=
+font-size:16px;" width=3D"50" height=3D"50"
+      />
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system, BlinkMacSystemFont, &#x27;Sego=
+e UI&#x27;, Roboto, Helvetica, sans-serif;font-size:16px;line-height:1.6;te=
+xt-align:left;color:#131517;"
+      ><h1 style=3D"margin-top:0;margin-bottom:4px;font-size:24px;line-heig=
+ht:32px"><b>Thank you for joining</b><div style=3D"font-weight:normal;color=
+:#b3b5b7">BRB Online - Open Worldwide with bounties $55000 +</div></h1></di=
+v>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system, BlinkMacSystemFont, &#x27;Sego=
+e UI&#x27;, Roboto, Helvetica, sans-serif;font-size:16px;line-height:1.6;te=
+xt-align:left;color:#131517;"
+      ><p>How did you like <b>BRB Online - Open Worldwide with bounties $55=
+000 +</b>?</p></div>
+   =20
+                </td>
+              </tr>
+            <table><tbody><tr><td><table class=3D"survey-pill"><tr><td clas=
+s=3D"survey-pill-content emoji"><a href=3D"https://lu.ma/survey-response?pk=
+=3Dg-5WGFa9gGve5uwDj&amp;rt=3D5"><img src=3D"https://files.zmurl.com/email/=
+star-5.png" alt=3D"Great" width=3D"28" height=3D"28"/></a></td></tr></table=
+></td><td><table class=3D"survey-pill"><tr><td class=3D"survey-pill-content=
+ emoji"><a href=3D"https://lu.ma/survey-response?pk=3Dg-5WGFa9gGve5uwDj&amp=
+;rt=3D4"><img src=3D"https://files.zmurl.com/email/star-4.png" alt=3D"Good"=
+ width=3D"28" height=3D"28"/></a></td></tr></table></td><td><table class=3D=
+"survey-pill"><tr><td class=3D"survey-pill-content emoji"><a href=3D"https:=
+//lu.ma/survey-response?pk=3Dg-5WGFa9gGve5uwDj&amp;rt=3D3"><img src=3D"http=
+s://files.zmurl.com/email/star-3.png" alt=3D"Meh" width=3D"28" height=3D"28=
+"/></a></td></tr></table></td><td><table class=3D"survey-pill"><tr><td clas=
+s=3D"survey-pill-content emoji"><a href=3D"https://lu.ma/survey-response?pk=
+=3Dg-5WGFa9gGve5uwDj&amp;rt=3D2"><img src=3D"https://files.zmurl.com/email/=
+star-2.png" alt=3D"Bad" width=3D"28" height=3D"28"/></a></td></tr></table><=
+/td><td><table class=3D"survey-pill"><tr><td class=3D"survey-pill-content e=
+moji"><a href=3D"https://lu.ma/survey-response?pk=3Dg-5WGFa9gGve5uwDj&amp;r=
+t=3D1"><img src=3D"https://files.zmurl.com/email/star-1.png" alt=3D"Terribl=
+e" width=3D"28" height=3D"28"/></a></td></tr></table></td></tr></tbody></ta=
+ble>
+              <tr>
+                <td
+                   align=3D"center" style=3D"font-size:0px;padding:0px;padd=
+ing-top:32px;word-break:break-word;"
+                >
+                 =20
+      <p
+         style=3D"border-top:solid 1px #ebeced;font-size:1px;margin:0px aut=
+o;width:100%;"
+      >
+      </p>
+     =20
+      <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"border-top:solid 1px #ebeced;font-size:1px;m=
+argin:0px auto;width:568px;" role=3D"presentation" width=3D"568px" ><tr><td=
+ style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+   =20
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-height:0px;font-s=
+ize:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"margin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:16px 16px 0 1=
+6px;text-align:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-a=
+lign:top;width:568px;" ><![endif]-->
+           =20
+      <div
+         class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-siz=
+e:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%;"
+      >
+       =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" width=3D"100%"
+      >
+        <tbody>
+          <tr>
+            <td  style=3D"vertical-align:top;padding:0px;">
+             =20
+      <table
+         border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentat=
+ion" style=3D"" width=3D"100%"
+      >
+        <tbody>
+         =20
+              <tr>
+                <td
+                   align=3D"left" style=3D"font-size:0px;padding:0px;word-b=
+reak:break-word;"
+                >
+                 =20
+      <div
+         style=3D"font-family:-apple-system, BlinkMacSystemFont, &#x27;Sego=
+e UI&#x27;, Roboto, Helvetica, sans-serif;font-size:16px;line-height:1.6;te=
+xt-align:left;color:#131517;"
+      ><div><div class=3D"col-50 mj-outlook-group-fix" style=3D"font-size:0=
+;text-align:left;display:inline-block;vertical-align:top;width:100%;margin-=
+bottom:8px"><table border=3D"0" cellPadding=3D"0" cellSpacing=3D"0" role=3D=
+"presentation" style=3D"vertical-align:top" width=3D"100%"><tbody><tr><td a=
+lign=3D"left" style=3D"font-size:0;padding-right:10px;word-break:break-word=
+"><a href=3D"https://lu.ma"><img height=3D"15" width=3D"45" src=3D"https://=
+cdn.lu.ma/email/logo.png"/></a></td></tr></tbody></table></div><div class=
+=3D"col-50 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;displ=
+ay:inline-block;vertical-align:top;width:100%;margin-bottom:8px"><table bor=
+der=3D"0" cellPadding=3D"0" cellSpacing=3D"0" role=3D"presentation" style=
+=3D"vertical-align:top" width=3D"100%"><tbody><tr><td align=3D"left" style=
+=3D"font-size:0;word-break:break-word"><div style=3D"font-size:12px;text-al=
+ign:right;color:#b3b5b7"><a href=3D"https://lu.ma/unsubscribe?calendar_api_=
+id=3Dcal-MqBRyrXZ4kcNgYC&amp;pk=3Dg-5WGFa9gGve5uwDj" style=3D"color:#b3b5b7=
+;text-decoration:none !important">Unsubscribe</a></div></td></tr></tbody></=
+table></div></div></div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:600px;" width=3D"600" ><tr><td style=3D"line-height:0px;font-s=
+ize:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div  style=3D"margin:0px auto;max-width:600px;">
+       =20
+        <table
+           align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"width:100%;"
+        >
+          <tbody>
+            <tr>
+              <td
+                 style=3D"direction:ltr;font-size:0px;padding:0 16px;text-a=
+lign:center;"
+              >
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td align=3D"left" class=3D"" styl=
+e=3D"" ><![endif]-->
+           =20
+      <div
+         style=3D"font-family:-apple-system, BlinkMacSystemFont, &#x27;Sego=
+e UI&#x27;, Roboto, Helvetica, sans-serif;font-size:16px;line-height:1.6;te=
+xt-align:left;color:#131517;"
+      ><a href=3D"https://lu.ma/holiday?ref=3Demail" style=3D"font-size:12p=
+x;color:#b3b5b7;text-decoration:none !important;padding:2px">Host your holi=
+day party with Luma =E2=86=97</a></div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+   =20
+   =20
+      </div>
+   =20
+  <img alt=3D"" src=3D"https://jpdm6py0.r.us-west-2.awstrack.me/I0/0101018c=
+0736776b-ae288ebf-c73b-4fa4-8ede-04aaca9f44f6-000000/wPP46mJclgLj0E-H6vhjwU=
+RQmUo=3D350" style=3D"display: none; width: 1px; height: 1px;">
+</body>
+</html>
+ =20
+----_NmP-5e17e67ff7170220-Part_1--

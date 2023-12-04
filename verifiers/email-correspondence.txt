@@ -1,0 +1,82 @@
+Delivered-To: 0xstruct@gmail.com
+Received: by 2002:a59:9ec6:0:b0:431:e673:1299 with SMTP id t6csp3157137vqx;
+        Sun, 3 Dec 2023 20:26:16 -0800 (PST)
+X-Received: by 2002:a2e:9211:0:b0:2ca:cb:4275 with SMTP id k17-20020a2e9211000000b002ca00cb4275mr421073ljg.87.1701663976436;
+        Sun, 03 Dec 2023 20:26:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701663976; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Vt9/TvGmxSWooABQ5sBlptLgSZVn+LmhbfbhxjmhBbnfCsfRttqV6IgpnT/HcIFCLy
+         NfQ78ESej556iKhLis76Gng2OtvSUR4Gryuk3aAjR/awnWizRITVyhHsOgjSTigmylJi
+         1BLnhs/HLw3UnF7yyPy67ZmIoFqB7SvMY8nCU56DfzMqFilPALUljm27IONpZTTZfW7S
+         CPTd0Tp4uQxx0a10g1HTBjpGlihUtmsnw2EvVuF+hX0N81JP4+jh4AhRE0ulxL06LvBb
+         s0JLmUx+nT89oAfrDE2jTtKtjKvb7otVD1adRsC36KjjsUnW7YZTl9ZCBfXtNNyhQImX
+         S9kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Jt06wF5pznGg4yonewUWDJiD1DWFJUlj/3oVKCWMYQk=;
+        fh=fsGnKSEDgu9g9iskrzKNHR/zY3cEj8FM1laY5ozh0cg=;
+        b=1Ebb5Lp4hlQObWMw1kFTsWj4ZFNK59o68M9fr18tLRvzeMWcXyK0c78QHjnmTX/eZB
+         cNaHvPvCuZRatxDZsNUOIxAQekrqakDTfb+lXYGOuu1uiPFa0lnhKqbTXCJXsZ0+8oo4
+         IsFUvOHo3IxdwTY6VBA9OWj8F4rtXRukJfH9Nf5OK2UWvs73b747sTP4ChxQid4U6hQt
+         BHDnsLG12e6J/41WkP4HoJ9E1opiPjv+XtzBFRi5IoqesIfSejT5ySND1EB/uo00ejRE
+         IZidvQrYsVsP8YZi9+bHu2w4OVccDyWQ3P7a62hUo0cP/ukLbeMdmGGe0az2M0kCpEJn
+         y5YQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FKid0CvW;
+       spf=pass (google.com: domain of pilucky314@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=pilucky314@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <pilucky314@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 22-20020a2e1556000000b002c9bade7b86sor465029ljv.6.2023.12.03.20.26.16
+        for <0xstruct@gmail.com>
+        (Google Transport Security);
+        Sun, 03 Dec 2023 20:26:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of pilucky314@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FKid0CvW;
+       spf=pass (google.com: domain of pilucky314@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=pilucky314@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701663976; x=1702268776; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Jt06wF5pznGg4yonewUWDJiD1DWFJUlj/3oVKCWMYQk=;
+        b=FKid0CvWNP5hQ8MMaqj01tH8Ropye2RxyayUmwF3xkMwkF0ti5TAF+/NC3jLwFrcO+
+         7K1w7h2Oh+XExOV37QBGY5pDxxr9JyWe5N/W4nW8Os0M81tcoomvoMT2Kv2waSDdCspD
+         cc39W2tsvk9QFrorrwZVupDs7AT5k0QXpoXrtDW+mmjPXtqc+4bKE2racqCMEyKruiAk
+         btApC8biVjZz7As+MY1jSxipvwBxoIEsV/o9c1Y16gnOrNmm3bl4YqheY+48Awvbb3EZ
+         lW6AKhoOKyO8qx0rB+UY0rbw4C/hW9Goo1IgCKW1dMF7wstqdMlECNFDMtrGoYfaItdg
+         L36w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701663976; x=1702268776;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jt06wF5pznGg4yonewUWDJiD1DWFJUlj/3oVKCWMYQk=;
+        b=uiYWOrYEr2jIR6qxZjAACKak/3rlfgOw8uDNF0ibiwZ5nJ+0OyRx9w94IfiTJvC+kJ
+         67MuAi2fjflEJVVDw+hGsdUKy4CpSrP2kg1olxC6yI2k7ljabg6AmkvFspDFCf25oLoz
+         l+JeDCK69i2C/2C+/lWQyJpvkGKgHf/ZTvztG6QY4FeMeAkE6TTpM18mzjE3/+/h65el
+         +ltkqXqZE3jE+h0Pzg1YrA3kNrVhfRT5Go2/wCOKlaQq3vxfNoA9S9A86GIwZ1zOLYfG
+         e6Ul/oAXHfmds9JZo3H88FMK62wcUlFQF/W8mfr7yikjIWimUqPxcWtN/6FrM/4qdrB9
+         Mv5g==
+X-Gm-Message-State: AOJu0Ywrj9QLSn3YOp1OLQTKkNHniwr9LauE+fNGvSTpxC9p5QRPqccd O5nkkusKXqJnTTHMcgEjc47TxE04mkFn+ezZWT18FL0z
+X-Google-Smtp-Source: AGHT+IFZazWuLpr5LVHlOqnbq6WpxKKcQ8YlKadqbIAa4Xu8jXhKvCDR73nGcB+aTSNhwSKNzBO+GW9rBSkU3DFHgKs=
+X-Received: by 2002:a2e:86cb:0:b0:2c9:fb7a:a269 with SMTP id n11-20020a2e86cb000000b002c9fb7aa269mr602891ljj.84.1701663975537; Sun, 03 Dec 2023 20:26:15 -0800 (PST)
+MIME-Version: 1.0
+From: Pi Lucky <pilucky314@gmail.com>
+Date: Mon, 4 Dec 2023 10:56:04 +0630
+Message-ID: <CAD_ZJgxCMHg3wNyLixH+m6dVWWG+hdVToqt4+cKXrBeeRD1nGg@mail.gmail.com>
+Subject: Hello, Nice to meet you
+To: "0xstruct@gmail.com" <0xstruct@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000c9ffd2060ba7840a"
+
+--000000000000c9ffd2060ba7840a
+Content-Type: text/plain; charset="UTF-8"
+
+Nice to meet you
+
+--000000000000c9ffd2060ba7840a
+Content-Type: text/html; charset="UTF-8"
+
+Nice to meet you
+
+--000000000000c9ffd2060ba7840a--

@@ -1,0 +1,18 @@
+{
+  "name": "you-ve-got-mail-and-vc",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@trinsic/trinsic": "^1.11.4",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mailauth": "^4.6.0"
+  }
+}

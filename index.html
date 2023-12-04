@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>You've got mail and VC!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+        />
+    </head>
+
+    <body>
+        <div class="container" style="max-width: 50%; min-width: 500px">
+            <div class="row" style="margin: 2rem 0">
+                <div class="column">
+                    <h1 style="margin: auto; text-align: center; font-weight: 500;">You've got mail and VC!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <fieldset>
+                        <label for="verifierField">Select Proof Verifier</label>
+                        <select id="verifierField">
+                            <option value="trinsic-ebook">
+                                Trinsic Ebook Download
+                            </option>
+                            <option value="email-correspondence">
+                              Email Correspondence
+                          </option>
+                            <option value="luma-participation">
+                                Luma Participation
+                            </option>
+                            <option value="devpost-submission">
+                              Devpost Submission
+                          </option>
+                        </select>
+                        <label for="emailField"
+                            >Email <i>(in raw format)</i></label
+                        >
+                        <textarea
+                            placeholder=""
+                            id="emailField"
+                            rows="10"
+                            style="height: 180px"
+                        ></textarea>
+                        <div class="float-right">
+                          <button id="sampleButton" class="button button-clear">Insert Sample Email</button>
+                        </div>
+                        <button
+                            class="button button-primary"
+                            id="verifyButton"
+                            style="font-size: 110%"
+                        >
+                            Verify
+                        </button>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const verifierField = document.getElementById("verifierField");
+            const emailField = document.getElementById("emailField");
+
+            const verifyButton = document.getElementById("verifyButton");
+            const sampleButton = document.getElementById("sampleButton");
+
+            verifyButton.addEventListener("click", async () => {
+                if(emailField.value === "") {
+                  alert("Please enter raw email for proof verification");
+                  return;
+                }
+
+                verifyButton.innerText = "Verifying ...";
+                verifyButton.disabled = true;
+
+                try {
+                    // get verifier
+                    console.log(verifierField.value);
+
+                    // POST to verifier
+                    const response = await fetch(`/verifiers/${verifierField.value}`, {
+                        method: "POST", // *GET, POST, PUT, DELETE, etc.
+                        mode: "cors", // no-cors, *cors, same-origin
+                        credentials: "same-origin", // include, *same-origin, omit
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            email: document.getElementById("emailField").value,
+                        }), // body data type must match "Content-Type" header
+                    });
+
+                    console.log(await response.json());
+
+                    verifyButton.innerText = "Verify";
+                    verifyButton.disabled = false;
+
+                } catch (error) {
+                    console.log(error);
+
+                    verifyButton.innerText = "Verify";
+                    verifyButton.disabl
+                }
+            });
+
+            sampleButton.addEventListener("click", async () => {
+              const response = await fetch(`/samples/${verifierField.value}.txt`);
+              emailField.value = await response.text();
+            });
+        </script>
+    </body>
+</html>
