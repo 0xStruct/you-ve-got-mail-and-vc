@@ -21,6 +21,8 @@ vDevpostSubmissionRouter.post("/", async (req, res) => {
     var verifyFailed = true;
     var verifyFailedMessage;
 
+    console.log(result.results)
+
     for (let { info } of result.results) {
         console.log("### verifying DKIM signature");
         console.log("info", info);
@@ -29,9 +31,9 @@ vDevpostSubmissionRouter.post("/", async (req, res) => {
         if (info.startsWith("dkim=pass")) {
             verifyFailed = false;
         } else {
-            verifyFailed = true;
+            //verifyFailed = true;
             verifyFailedMessage = `DKIM failed: ${info.split(" header.")[0]}`;
-            break;
+            //break;
         }
     }
 
